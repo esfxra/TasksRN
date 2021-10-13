@@ -18,7 +18,16 @@ export default function Home({navigation}: HomeProps) {
           </Pressable>
         </>
       ) : (
-        appContext.tasks.map(task => <Text key={task.id}>{task.name}</Text>)
+        appContext.tasks.map(task => (
+          <Pressable
+            key={task.id}
+            onPress={() => navigation.navigate('EditTask', {taskId: task.id})}>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{marginRight: 5}}>{task.name}</Text>
+              <Text>{task.complete ? 'complete' : 'incomplete'}</Text>
+            </View>
+          </Pressable>
+        ))
       )}
       <ActionButton />
     </View>
