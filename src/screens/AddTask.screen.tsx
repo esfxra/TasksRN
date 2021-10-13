@@ -14,7 +14,7 @@ export default function AddTask({navigation}: AddTaskProps) {
 
   function handleAdd() {
     appContext.dispatch({
-      type: 'AddTask',
+      type: 'Add',
       payload: {id: String(Date.now()), name: value},
     });
 

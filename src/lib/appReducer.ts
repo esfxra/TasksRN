@@ -2,7 +2,7 @@ import {AppState, AppAction, Task} from '../types';
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   // Add task
-  if (action.type === 'AddTask') {
+  if (action.type === 'Add') {
     const newTask: Task = {
       id: action.payload.id,
       name: action.payload.name,
@@ -13,7 +13,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
   }
 
   // Edit name
-  if (action.type === 'EditTaskName') {
+  if (action.type === 'EditName') {
     const updatedTasks = state.tasks.map(task => {
       if (task.id === action.payload.id) {
         return {
@@ -29,7 +29,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
   }
 
   // Toggle complete
-  if (action.type === 'ToggleTaskComplete') {
+  if (action.type === 'ToggleComplete') {
     const updatedTasks = state.tasks.map(task => {
       if (task.id === action.payload.id) {
         return {
@@ -45,7 +45,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
   }
 
   // Delete task
-  if (action.type === 'DeleteTask') {
+  if (action.type === 'Delete') {
     const updatedTasks = state.tasks.filter(task => {
       return task.id !== action.payload.id;
     });

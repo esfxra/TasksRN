@@ -18,7 +18,7 @@ export default function EditTask({navigation, route}: EditTaskProps) {
 
   function handleEditName() {
     appContext.dispatch({
-      type: 'EditTaskName',
+      type: 'EditName',
       payload: {id: taskId, name: value ? value : ''},
     });
 
@@ -26,13 +26,13 @@ export default function EditTask({navigation, route}: EditTaskProps) {
   }
 
   function handleEditComplete() {
-    appContext.dispatch({type: 'ToggleTaskComplete', payload: {id: taskId}});
+    appContext.dispatch({type: 'ToggleComplete', payload: {id: taskId}});
 
     navigation.goBack();
   }
 
   function handleDelete() {
-    appContext.dispatch({type: 'DeleteTask', payload: {id: taskId}});
+    appContext.dispatch({type: 'Delete', payload: {id: taskId}});
 
     navigation.goBack();
   }

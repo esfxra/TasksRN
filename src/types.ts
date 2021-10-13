@@ -20,10 +20,10 @@ export interface AppState {
 
 export type AppAction =
   | {type: 'Init'; payload: InitPayload}
-  | {type: 'AddTask'; payload: AddTaskPayload}
-  | {type: 'EditTaskName'; payload: EditTaskNamePayload}
-  | {type: 'ToggleTaskComplete'; payload: ToggleTaskCompletePayload}
-  | {type: 'DeleteTask'; payload: DeleteTaskPayload};
+  | {type: 'Add'; payload: AddPayload}
+  | {type: 'EditName'; payload: EditNamePayload}
+  | {type: 'ToggleComplete'; payload: ToggleCompletePayload}
+  | {type: 'Delete'; payload: DeletePayload};
 
 type AppDispatch = (action: AppAction) => void;
 
@@ -31,21 +31,21 @@ interface InitPayload {
   state: AppState;
 }
 
-interface AddTaskPayload {
+interface AddPayload {
   id: string;
   name: string;
 }
 
-interface EditTaskNamePayload {
+interface EditNamePayload {
   id: string;
   name: string;
 }
 
-interface ToggleTaskCompletePayload {
+interface ToggleCompletePayload {
   id: string;
 }
 
-interface DeleteTaskPayload {
+interface DeletePayload {
   id: string;
 }
 
