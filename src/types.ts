@@ -34,7 +34,6 @@ interface InitPayload {
 interface AddTaskPayload {
   id: string;
   name: string;
-  category: string;
 }
 
 interface EditTaskPayload {
