@@ -51,3 +51,20 @@ interface CompleteTaskPayload {
 interface DeleteTaskPayload {
   id: string;
 }
+
+/**
+ * Navigation
+ */
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+
+export type StackParamList = {
+  Home: undefined;
+  AddTask: undefined;
+  EditTask: {taskId: string};
+};
+
+export type HomeProps = NativeStackScreenProps<StackParamList, 'Home'>;
+
+export type AddTaskProps = NativeStackScreenProps<StackParamList, 'AddTask'>;
+
+export type EditTaskProps = NativeStackScreenProps<StackParamList, 'EditTask'>;
