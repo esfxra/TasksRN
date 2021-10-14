@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import {Pressable, TextInput, Text, View} from 'react-native';
 
 import {useAppContext} from '../App.provider';
+import {useThemeContext} from '../Theme.provider';
 import {EditTaskProps} from '../types';
 
 export default function EditTask({navigation, route}: EditTaskProps) {
   const appContext = useAppContext();
+  const themeContext = useThemeContext();
 
   const {taskId} = route.params;
   const task = appContext.tasks.find(task => task.id === taskId);
@@ -38,43 +40,56 @@ export default function EditTask({navigation, route}: EditTaskProps) {
   }
 
   return (
-    <View>
-      <Text>Name</Text>
+    <View
+      style={{flex: 1, backgroundColor: themeContext.theme.colors.background}}>
+      <Text style={{color: themeContext.theme.colors.foreground}}>Name</Text>
       <TextInput
-        style={{borderWidth: 1}}
+        style={{
+          color: themeContext.theme.colors.foreground,
+          borderColor: themeContext.theme.colors.foreground,
+          borderWidth: 1,
+        }}
         value={value}
         onChangeText={handleTextChange}
       />
-      <Text>{task?.complete ? 'complete' : 'incomplete'}</Text>
+      <Text style={{color: themeContext.theme.colors.foreground}}>
+        {task?.complete ? 'complete' : 'incomplete'}
+      </Text>
       <Pressable
         style={{
           alignSelf: 'flex-end',
           borderRadius: 10,
-          padding: 5,
-          backgroundColor: 'black',
+          padding: themeContext.theme.spacing.s,
+          backgroundColor: themeContext.theme.colors.foreground,
         }}
         onPress={() => handleEditName()}>
-        <Text style={{color: 'white'}}>edit name</Text>
+        <Text style={{color: themeContext.theme.colors.background}}>
+          edit name
+        </Text>
       </Pressable>
       <Pressable
         style={{
           alignSelf: 'flex-end',
           borderRadius: 10,
-          padding: 5,
-          backgroundColor: 'black',
+          padding: themeContext.theme.spacing.s,
+          backgroundColor: themeContext.theme.colors.foreground,
         }}
         onPress={() => handleEditComplete()}>
-        <Text style={{color: 'white'}}>toggle complete</Text>
+        <Text style={{color: themeContext.theme.colors.background}}>
+          toggle complete
+        </Text>
       </Pressable>
       <Pressable
         style={{
           alignSelf: 'flex-end',
           borderRadius: 10,
-          padding: 5,
-          backgroundColor: 'black',
+          padding: themeContext.theme.spacing.s,
+          backgroundColor: themeContext.theme.colors.foreground,
         }}
         onPress={() => handleDelete()}>
-        <Text style={{color: 'white'}}>delete task</Text>
+        <Text style={{color: themeContext.theme.colors.background}}>
+          delete task
+        </Text>
       </Pressable>
     </View>
   );

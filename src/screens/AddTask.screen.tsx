@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import {Pressable, TextInput, Text, View} from 'react-native';
 
 import {useAppContext} from '../App.provider';
+import {useThemeContext} from '../Theme.provider';
 import {AddTaskProps} from '../types';
 
 export default function AddTask({navigation}: AddTaskProps) {
   const appContext = useAppContext();
+  const themeContext = useThemeContext();
   const [value, setValue] = useState('');
 
   function handleTextChange(text: string) {
@@ -22,10 +24,15 @@ export default function AddTask({navigation}: AddTaskProps) {
   }
 
   return (
-    <View>
-      <Text>Name</Text>
+    <View
+      style={{flex: 1, backgroundColor: themeContext.theme.colors.background}}>
+      <Text style={{color: themeContext.theme.colors.foreground}}>Name</Text>
       <TextInput
-        style={{borderWidth: 1}}
+        style={{
+          color: themeContext.theme.colors.foreground,
+          borderColor: themeContext.theme.colors.foreground,
+          borderWidth: 1,
+        }}
         value={value}
         onChangeText={handleTextChange}
       />
@@ -33,11 +40,13 @@ export default function AddTask({navigation}: AddTaskProps) {
         style={{
           alignSelf: 'flex-end',
           borderRadius: 10,
-          padding: 5,
-          backgroundColor: 'black',
+          padding: themeContext.theme.spacing.s,
+          backgroundColor: themeContext.theme.colors.foreground,
         }}
         onPress={() => handleAdd()}>
-        <Text style={{color: 'white'}}>add task</Text>
+        <Text style={{color: themeContext.theme.colors.background}}>
+          add task
+        </Text>
       </Pressable>
     </View>
   );
