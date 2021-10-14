@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
-import {Pressable, TextInput, Text, View} from 'react-native';
+import {View} from 'react-native';
 
 import {useAppContext} from '../App.provider';
 import {useThemeContext} from '../Theme.provider';
+import Text from '../components/base/Text';
+import TextInput from '../components/base/TextInput';
+import Button from '../components/base/Button';
+import Separator from '../components/base/Separator';
 import {AddTaskProps} from '../types';
 
 export default function AddTask({navigation}: AddTaskProps) {
@@ -26,28 +30,12 @@ export default function AddTask({navigation}: AddTaskProps) {
   return (
     <View
       style={{flex: 1, backgroundColor: themeContext.theme.colors.background}}>
-      <Text style={{color: themeContext.theme.colors.foreground}}>Name</Text>
-      <TextInput
-        style={{
-          color: themeContext.theme.colors.foreground,
-          borderColor: themeContext.theme.colors.foreground,
-          borderWidth: 1,
-        }}
-        value={value}
-        onChangeText={handleTextChange}
-      />
-      <Pressable
-        style={{
-          alignSelf: 'flex-end',
-          borderRadius: 10,
-          padding: themeContext.theme.spacing.s,
-          backgroundColor: themeContext.theme.colors.foreground,
-        }}
-        onPress={() => handleAdd()}>
-        <Text style={{color: themeContext.theme.colors.background}}>
-          add task
-        </Text>
-      </Pressable>
+      <Text>Name</Text>
+      <TextInput value={value} onChangeText={handleTextChange} />
+
+      <Separator />
+
+      <Button onPress={handleAdd}>add task</Button>
     </View>
   );
 }

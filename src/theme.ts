@@ -3,7 +3,7 @@ const palette = {
   white: '#FFFFFF',
 };
 
-const theme = {
+export const theme = {
   spacing: {
     xs: 8,
     s: 10,
@@ -13,6 +13,7 @@ const theme = {
   text: {
     heading: {
       fontSize: 28,
+      fontWeight: 'normal',
     },
     subHeading: {
       fontSize: 16,
@@ -20,6 +21,7 @@ const theme = {
     },
     body: {
       fontSize: 16,
+      fontWeight: 'normal',
     },
   },
 };

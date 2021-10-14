@@ -1,10 +1,14 @@
 import React from 'react';
-import {Pressable, Text, View} from 'react-native';
+import {Pressable, View} from 'react-native';
 
 import {useAppContext} from '../App.provider';
 import {useThemeContext} from '../Theme.provider';
 import ActionButton from '../components/ActionButton';
+import Row from '../components/base/Row';
+import Button from '../components/base/Button';
+import Text from '../components/base/Text';
 import {HomeProps} from '../types';
+import Separator from '../components/base/Separator';
 
 export default function Home({navigation}: HomeProps) {
   const appContext = useAppContext();
@@ -13,51 +17,32 @@ export default function Home({navigation}: HomeProps) {
   return (
     <View
       style={{flex: 1, backgroundColor: themeContext.theme.colors.background}}>
-      <Pressable
-        style={{
-          marginBottom: themeContext.theme.spacing.s,
-          borderRadius: 5,
-          backgroundColor: themeContext.theme.colors.foreground,
-        }}
-        onPress={() => themeContext.toggleTheme()}>
-        <Text style={{color: themeContext.theme.colors.background}}>
-          Switch theme
-        </Text>
-      </Pressable>
+      <Button onPress={() => themeContext.toggleTheme()}>Switch theme</Button>
+
+      <Separator />
+
+      <Text type="heading">Tasks</Text>
+
+      <Separator size="xs" />
 
       {appContext.tasks.length === 0 ? (
-        <>
-          <Text style={{color: themeContext.theme.colors.foreground}}>
-            No tasks have been added (yet).
-          </Text>
-          <Pressable onPress={() => navigation.navigate('AddTask')}>
-            <Text
-              style={{
-                color: themeContext.theme.colors.foreground,
-                fontWeight: 'bold',
-              }}>
-              Add one.
-            </Text>
-          </Pressable>
-        </>
+        <Text>No tasks have been added (yet).</Text>
       ) : (
         appContext.tasks.map(task => (
-          <Pressable
-            key={task.id}
-            onPress={() => navigation.navigate('EditTask', {taskId: task.id})}>
-            <View style={{flexDirection: 'row'}}>
-              <Text
-                style={{
-                  color: themeContext.theme.colors.foreground,
-                  marginRight: 5,
-                }}>
-                {task.name}
-              </Text>
-              <Text style={{color: themeContext.theme.colors.foreground}}>
-                {task.complete ? 'complete' : 'incomplete'}
-              </Text>
-            </View>
-          </Pressable>
+          <View key={task.id}>
+            <Pressable
+              onPress={() =>
+                navigation.navigate('EditTask', {taskId: task.id})
+              }>
+              <Row>
+                <Text>
+                  {`${task.name} ${task.complete ? 'complete' : 'incomplete'}`}
+                </Text>
+              </Row>
+            </Pressable>
+
+            <Separator />
+          </View>
         ))
       )}
       <ActionButton />

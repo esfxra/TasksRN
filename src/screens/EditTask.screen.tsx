@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
-import {Pressable, TextInput, Text, View} from 'react-native';
+import {View} from 'react-native';
 
 import {useAppContext} from '../App.provider';
 import {useThemeContext} from '../Theme.provider';
+import Text from '../components/base/Text';
+import TextInput from '../components/base/TextInput';
+import Button from '../components/base/Button';
+import Separator from '../components/base/Separator';
 import {EditTaskProps} from '../types';
 
 export default function EditTask({navigation, route}: EditTaskProps) {
@@ -42,55 +46,24 @@ export default function EditTask({navigation, route}: EditTaskProps) {
   return (
     <View
       style={{flex: 1, backgroundColor: themeContext.theme.colors.background}}>
-      <Text style={{color: themeContext.theme.colors.foreground}}>Name</Text>
-      <TextInput
-        style={{
-          color: themeContext.theme.colors.foreground,
-          borderColor: themeContext.theme.colors.foreground,
-          borderWidth: 1,
-        }}
-        value={value}
-        onChangeText={handleTextChange}
-      />
-      <Text style={{color: themeContext.theme.colors.foreground}}>
-        {task?.complete ? 'complete' : 'incomplete'}
-      </Text>
-      <Pressable
-        style={{
-          alignSelf: 'flex-end',
-          borderRadius: 10,
-          padding: themeContext.theme.spacing.s,
-          backgroundColor: themeContext.theme.colors.foreground,
-        }}
-        onPress={() => handleEditName()}>
-        <Text style={{color: themeContext.theme.colors.background}}>
-          edit name
-        </Text>
-      </Pressable>
-      <Pressable
-        style={{
-          alignSelf: 'flex-end',
-          borderRadius: 10,
-          padding: themeContext.theme.spacing.s,
-          backgroundColor: themeContext.theme.colors.foreground,
-        }}
-        onPress={() => handleEditComplete()}>
-        <Text style={{color: themeContext.theme.colors.background}}>
-          toggle complete
-        </Text>
-      </Pressable>
-      <Pressable
-        style={{
-          alignSelf: 'flex-end',
-          borderRadius: 10,
-          padding: themeContext.theme.spacing.s,
-          backgroundColor: themeContext.theme.colors.foreground,
-        }}
-        onPress={() => handleDelete()}>
-        <Text style={{color: themeContext.theme.colors.background}}>
-          delete task
-        </Text>
-      </Pressable>
+      <Text>Name</Text>
+      <TextInput value={value} onChangeText={handleTextChange} />
+
+      <Separator />
+
+      <Text>{task?.complete ? 'complete' : 'incomplete'}</Text>
+
+      <Separator />
+
+      <Button onPress={() => handleEditName()}>edit name</Button>
+
+      <Separator />
+
+      <Button onPress={() => handleEditComplete()}>toggle complete</Button>
+
+      <Separator />
+
+      <Button onPress={() => handleDelete()}>delete task</Button>
     </View>
   );
 }
