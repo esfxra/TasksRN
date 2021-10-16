@@ -1,16 +1,16 @@
 import React from 'react';
-import {Pressable, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 
 import {useAppContext} from '../App.provider';
 import {useThemeContext} from '../Theme.provider';
 import ActionButton from '../components/ActionButton';
-import Row from '../components/base/Row';
 import Button from '../components/base/Button';
 import Text from '../components/base/Text';
-import {HomeProps} from '../types';
 import Separator from '../components/base/Separator';
+import TaskItem from '../components/TaskItem';
+import {HomeProps} from '../types';
 
-export default function Home({navigation}: HomeProps) {
+export default function Home({}: HomeProps) {
   const appContext = useAppContext();
   const themeContext = useThemeContext();
 
@@ -25,26 +25,13 @@ export default function Home({navigation}: HomeProps) {
 
       <Separator size="xs" />
 
-      {appContext.tasks.length === 0 ? (
-        <Text>No tasks have been added (yet).</Text>
-      ) : (
-        appContext.tasks.map(task => (
-          <View key={task.id}>
-            <Pressable
-              onPress={() =>
-                navigation.navigate('EditTask', {taskId: task.id})
-              }>
-              <Row>
-                <Text>
-                  {`${task.name} ${task.complete ? 'complete' : 'incomplete'}`}
-                </Text>
-              </Row>
-            </Pressable>
-
-            <Separator />
-          </View>
-        ))
-      )}
+      <ScrollView>
+        {appContext.tasks.length === 0 ? (
+          <Text>No tasks have been added (yet).</Text>
+        ) : (
+          appContext.tasks.map(task => <TaskItem key={task.id} task={task} />)
+        )}
+      </ScrollView>
       <ActionButton />
     </View>
   );

@@ -11,7 +11,7 @@ export default function Row({children, justifyContent}: RowProps) {
     <View
       style={{
         flexDirection: 'row',
-        alignContent: 'center',
+        alignItems: 'center',
         justifyContent: justifyContent,
       }}>
       {children}
