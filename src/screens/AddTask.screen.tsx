@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
+// import {View} from 'react-native';
 
 import {useAppContext} from '../App.provider';
-import {useThemeContext} from '../Theme.provider';
+// import {useThemeContext} from '../Theme.provider';
+import ModalLayout from '../components/ModalLayout';
+import Row from '../components/base/Row';
 import Text from '../components/base/Text';
 import TextInput from '../components/base/TextInput';
 import Button from '../components/base/Button';
@@ -11,8 +13,12 @@ import {AddTaskProps} from '../types';
 
 export default function AddTask({navigation}: AddTaskProps) {
   const appContext = useAppContext();
-  const themeContext = useThemeContext();
+  // const themeContext = useThemeContext();
   const [value, setValue] = useState('');
+
+  function closeModal() {
+    navigation.goBack();
+  }
 
   function handleTextChange(text: string) {
     setValue(text);
@@ -24,18 +30,23 @@ export default function AddTask({navigation}: AddTaskProps) {
       payload: {id: String(Date.now()), name: value},
     });
 
-    navigation.goBack();
+    closeModal();
   }
 
   return (
-    <View
-      style={{flex: 1, backgroundColor: themeContext.theme.colors.background}}>
+    <ModalLayout closeModal={closeModal}>
       <Text>Name</Text>
-      <TextInput value={value} onChangeText={handleTextChange} />
+      <TextInput
+        value={value}
+        onChangeText={handleTextChange}
+        autoFocus={true}
+      />
 
       <Separator />
 
-      <Button onPress={handleAdd}>add task</Button>
-    </View>
+      <Row justifyContent="flex-end">
+        <Button onPress={handleAdd}>add task</Button>
+      </Row>
+    </ModalLayout>
   );
 }

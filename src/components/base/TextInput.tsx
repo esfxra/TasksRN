@@ -8,12 +8,14 @@ interface TextInputProps {
   onChangeText: (text: string) => void;
   value?: string;
   padding?: keyof typeof themeTemplate.spacing;
+  autoFocus?: boolean;
 }
 
 export default function TextInput({
   value,
   onChangeText,
   padding,
+  autoFocus,
 }: TextInputProps) {
   const {theme} = useThemeContext();
 
@@ -28,6 +30,7 @@ export default function TextInput({
       }}
       value={value}
       onChangeText={onChangeText}
+      autoFocus={autoFocus}
     />
   );
 }

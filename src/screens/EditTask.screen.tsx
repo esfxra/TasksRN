@@ -8,15 +8,20 @@ import TextInput from '../components/base/TextInput';
 import Button from '../components/base/Button';
 import Separator from '../components/base/Separator';
 import {EditTaskProps} from '../types';
+import ModalLayout from '../components/ModalLayout';
+import Row from '../components/base/Row';
 
 export default function EditTask({navigation, route}: EditTaskProps) {
   const appContext = useAppContext();
-  const themeContext = useThemeContext();
 
   const {taskId} = route.params;
   const task = appContext.tasks.find(task => task.id === taskId);
 
   const [value, setValue] = useState(task?.name);
+
+  function closeModal() {
+    navigation.goBack();
+  }
 
   function handleTextChange(text: string) {
     setValue(text);
@@ -28,42 +33,41 @@ export default function EditTask({navigation, route}: EditTaskProps) {
       payload: {id: taskId, name: value ? value : ''},
     });
 
-    navigation.goBack();
+    closeModal();
   }
 
   function handleEditComplete() {
     appContext.dispatch({type: 'ToggleComplete', payload: {id: taskId}});
 
-    navigation.goBack();
+    closeModal();
   }
 
   function handleDelete() {
     appContext.dispatch({type: 'Delete', payload: {id: taskId}});
 
-    navigation.goBack();
+    closeModal();
   }
 
   return (
-    <View
-      style={{flex: 1, backgroundColor: themeContext.theme.colors.background}}>
+    <ModalLayout closeModal={closeModal}>
       <Text>Name</Text>
-      <TextInput value={value} onChangeText={handleTextChange} />
+      <TextInput
+        value={value}
+        onChangeText={handleTextChange}
+        autoFocus={true}
+      />
 
       <Separator />
 
-      <Text>{task?.complete ? 'complete' : 'incomplete'}</Text>
-
-      <Separator />
-
-      <Button onPress={() => handleEditName()}>edit name</Button>
-
-      <Separator />
-
-      <Button onPress={() => handleEditComplete()}>toggle complete</Button>
-
-      <Separator />
-
-      <Button onPress={() => handleDelete()}>delete task</Button>
-    </View>
+      <Row justifyContent="flex-end">
+        <Button onPress={() => handleDelete()}>delete</Button>
+        <Separator size="xs" vertical={true} />
+        <Button onPress={() => handleEditComplete()}>
+          {`mark ${task?.complete ? 'incomplete' : 'complete'}`}
+        </Button>
+        <Separator size="xs" vertical={true} />
+        <Button onPress={() => handleEditName()}>edit</Button>
+      </Row>
+    </ModalLayout>
   );
 }

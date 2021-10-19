@@ -12,9 +12,17 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* Home screen, where all tasks are shown */}
         <Stack.Screen component={Home} name="Home" />
-        <Stack.Screen component={AddTask} name="AddTask" />
-        <Stack.Screen component={EditTask} name="EditTask" />
+        {/* Add and Edit modals */}
+        <Stack.Group
+          screenOptions={{
+            presentation: 'transparentModal',
+            headerShown: false,
+          }}>
+          <Stack.Screen component={AddTask} name="AddTask" />
+          <Stack.Screen component={EditTask} name="EditTask" />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );

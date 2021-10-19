@@ -12,12 +12,16 @@ import {HomeProps} from '../types';
 
 export default function Home({}: HomeProps) {
   const appContext = useAppContext();
-  const themeContext = useThemeContext();
+  const {theme, toggleTheme} = useThemeContext();
 
   return (
     <View
-      style={{flex: 1, backgroundColor: themeContext.theme.colors.background}}>
-      <Button onPress={() => themeContext.toggleTheme()}>Switch theme</Button>
+      style={{
+        flex: 1,
+        padding: theme.spacing.m,
+        backgroundColor: theme.colors.background,
+      }}>
+      <Button onPress={() => toggleTheme()}>Switch theme</Button>
 
       <Separator />
 
