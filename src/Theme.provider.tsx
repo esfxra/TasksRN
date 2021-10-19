@@ -9,6 +9,7 @@ interface ThemeProviderProps {
 
 const initialContext = {
   theme: lightTheme,
+  themeName: 'light',
   toggleTheme: () => {},
 };
 
@@ -30,6 +31,7 @@ export default function ThemeProvider({children}: ThemeProviderProps) {
     <ThemeContext.Provider
       value={{
         theme: themes[theme],
+        themeName: theme,
         toggleTheme: () =>
           setTheme(state => (state === 'light' ? 'dark' : 'light')),
       }}>
