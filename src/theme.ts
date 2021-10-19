@@ -12,8 +12,8 @@ export const theme = {
   },
   text: {
     heading: {
-      fontSize: 28,
-      fontWeight: 'normal',
+      fontSize: 24,
+      fontWeight: 'bold',
     },
     subHeading: {
       fontSize: 16,

@@ -1,4 +1,5 @@
 import React, {createContext, useContext, useState} from 'react';
+import {StatusBar} from 'react-native';
 
 import {lightTheme, darkTheme} from './theme';
 
@@ -33,6 +34,9 @@ export default function ThemeProvider({children}: ThemeProviderProps) {
           setTheme(state => (state === 'light' ? 'dark' : 'light')),
       }}>
       {children}
+      <StatusBar
+        barStyle={theme === 'light' ? 'dark-content' : 'light-content'}
+      />
     </ThemeContext.Provider>
   );
 }
