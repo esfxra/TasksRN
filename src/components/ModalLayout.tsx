@@ -61,7 +61,7 @@ export default function ModalLayout({children, closeModal}: ModalLayoutProps) {
             },
           ]}>
           <Row justifyContent="flex-end">
-            <Button onPress={closeModal}>Close</Button>
+            <Button label="Close" onPress={closeModal} />
           </Row>
           {children}
         </View>

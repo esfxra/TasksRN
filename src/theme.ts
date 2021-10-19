@@ -5,6 +5,7 @@ const palette = {
 
 export const theme = {
   spacing: {
+    xxs: 5,
     xs: 8,
     s: 10,
     m: 16,
