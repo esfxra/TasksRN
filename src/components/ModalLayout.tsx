@@ -3,10 +3,13 @@ import {Platform, Pressable, KeyboardAvoidingView, View} from 'react-native';
 
 import {useThemeContext} from '../Theme.provider';
 import Button from './base/Button';
+import Text from './base/Text';
 import Row from './base/Row';
+import Separator from './base/Separator';
 
 interface ModalLayoutProps {
   children: React.ReactNode;
+  title: string;
   closeModal: () => void;
 }
 
@@ -36,9 +39,11 @@ function ScreenFiller({onPress}: {onPress: () => void}) {
 
 function ModalContent({
   children,
+  title,
   closeModal,
 }: {
   children: React.ReactNode;
+  title: string;
   closeModal: () => void;
 }) {
   const {theme} = useThemeContext();
@@ -54,7 +59,8 @@ function ModalContent({
         paddingHorizontal: theme.spacing.m,
         backgroundColor: theme.colors.background,
       }}>
-      <Row justifyContent="flex-end">
+      <Row justifyContent="space-between">
+        <Text type="subHeading">{title}</Text>
         <Button
           onPress={closeModal}
           hitSlop={10}
@@ -63,18 +69,27 @@ function ModalContent({
           borderRadius={999}
         />
       </Row>
+
+      <Separator />
+
       {children}
     </View>
   );
 }
 
-export default function ModalLayout({children, closeModal}: ModalLayoutProps) {
+export default function ModalLayout({
+  children,
+  title,
+  closeModal,
+}: ModalLayoutProps) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ModalContainer>
         <ScreenFiller onPress={closeModal} />
-        <ModalContent closeModal={closeModal}>{children}</ModalContent>
+        <ModalContent title={title} closeModal={closeModal}>
+          {children}
+        </ModalContent>
       </ModalContainer>
     </KeyboardAvoidingView>
   );

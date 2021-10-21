@@ -35,6 +35,7 @@ export default function TextInput({
         borderRadius: 0,
         borderColor: theme.colors.foreground,
         color: theme.colors.foreground,
+        ...theme.text.body,
       }}
     />
   );

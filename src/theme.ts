@@ -24,12 +24,16 @@ export const theme = {
       fontWeight: 'bold',
     } as TextStyle,
     subHeading: {
-      fontSize: 16,
+      fontSize: 20,
       fontWeight: 'bold',
     } as TextStyle,
     body: {
       fontSize: 16,
       fontWeight: 'normal',
+    } as TextStyle,
+    bodyBold: {
+      fontSize: 16,
+      fontWeight: 'bold',
     } as TextStyle,
   },
 };

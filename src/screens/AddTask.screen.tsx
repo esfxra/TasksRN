@@ -31,9 +31,8 @@ export default function AddTask({navigation}: AddTaskProps) {
   }
 
   return (
-    <ModalLayout closeModal={closeModal}>
-      <Text>Task name</Text>
-
+    <ModalLayout title="Add task" closeModal={closeModal}>
+      <Text type="bodyBold">Name</Text>
       <TextInput
         value={value}
         onChangeText={handleTextChange}
@@ -43,7 +42,7 @@ export default function AddTask({navigation}: AddTaskProps) {
       <Separator />
 
       <Row justifyContent="flex-end">
-        <Button onPress={handleAdd} label="Add task" icon="AddTask" />
+        <Button onPress={handleAdd} label="Add" icon="AddTask" />
       </Row>
     </ModalLayout>
   );

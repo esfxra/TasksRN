@@ -47,8 +47,8 @@ export default function EditTask({navigation, route}: EditTaskProps) {
   }
 
   return (
-    <ModalLayout closeModal={closeModal}>
-      <Text>Task name</Text>
+    <ModalLayout title="Edit task" closeModal={closeModal}>
+      <Text type="bodyBold">Task name</Text>
       <TextInput
         value={value}
         onChangeText={handleTextChange}
