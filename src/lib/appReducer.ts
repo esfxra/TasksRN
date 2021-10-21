@@ -9,7 +9,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       complete: false,
     };
 
-    return {tasks: [...state.tasks, newTask]};
+    return {tasks: [newTask, ...state.tasks]};
   }
 
   // Edit name

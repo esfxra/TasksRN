@@ -25,15 +25,16 @@ export default function TaskItem({task}: TaskItemProps) {
   return (
     <View
       style={{
-        borderBottomWidth: 1,
+        borderBottomWidth: 0.5,
         borderBottomColor: theme.colors.foreground,
+        opacity: task.complete ? 0.5 : 1,
       }}>
       <Row>
         <TaskCheckbox complete={task.complete} onPress={toggleComplete} />
         <Pressable
           style={{
             flex: 1,
-            paddingVertical: theme.spacing.xs,
+            paddingVertical: theme.spacing.s,
           }}
           onPress={() => navigation.navigate('EditTask', {taskId: task.id})}>
           <Text>{task.name}</Text>

@@ -1,15 +1,14 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
+import {View} from 'react-native';
 
 import {useAppContext} from '../App.provider';
 import {useThemeContext} from '../Theme.provider';
 import ActionButton from '../components/ActionButton';
-import Text from '../components/base/Text';
-import TaskItem from '../components/TaskItem';
 import {HomeProps} from '../types';
+import TaskList from '../components/TaskList';
 
 export default function Home({}: HomeProps) {
-  const appContext = useAppContext();
+  const {tasks} = useAppContext();
   const {theme} = useThemeContext();
 
   return (
@@ -19,13 +18,7 @@ export default function Home({}: HomeProps) {
         padding: theme.spacing.m,
         backgroundColor: theme.colors.background,
       }}>
-      <ScrollView>
-        {appContext.tasks.length === 0 ? (
-          <Text>No tasks have been added (yet).</Text>
-        ) : (
-          appContext.tasks.map(task => <TaskItem key={task.id} task={task} />)
-        )}
-      </ScrollView>
+      <TaskList tasks={tasks} />
       <ActionButton />
     </View>
   );
