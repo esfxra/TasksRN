@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text as RNText, View} from 'react-native';
+import {Text as RNText} from 'react-native';
 
 import {useThemeContext} from '../../Theme.provider';
 import {theme as themeTemplate} from '../../theme';
@@ -14,14 +14,12 @@ export default function Text({children, type, color}: TextProps) {
   const {theme} = useThemeContext();
 
   return (
-    <View>
-      <RNText
-        style={{
-          ...(type ? theme.text[type] : theme.text.body),
-          color: color ? theme.colors[color] : theme.colors.foreground,
-        }}>
-        {children}
-      </RNText>
-    </View>
+    <RNText
+      style={{
+        ...(type ? theme.text[type] : theme.text.body),
+        color: color ? theme.colors[color] : theme.colors.foreground,
+      }}>
+      {children}
+    </RNText>
   );
 }
