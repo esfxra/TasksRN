@@ -7,30 +7,35 @@ import {theme as themeTemplate} from '../../theme';
 interface TextInputProps {
   onChangeText: (text: string) => void;
   value?: string;
-  padding?: keyof typeof themeTemplate.spacing;
   autoFocus?: boolean;
+  paddingVertical?: keyof typeof themeTemplate.spacing;
 }
 
 export default function TextInput({
   value,
   onChangeText,
-  padding,
   autoFocus,
+  paddingVertical,
 }: TextInputProps) {
   const {theme} = useThemeContext();
 
+  // Determine padding
+  const determinedPadding = paddingVertical
+    ? theme.spacing[paddingVertical]
+    : theme.spacing.xs;
+
   return (
     <TextInputRN
-      style={{
-        padding: theme.spacing[padding || 'xs'],
-        borderWidth: 1,
-        borderRadius: theme.spacing.xs,
-        borderColor: theme.colors.foreground,
-        color: theme.colors.foreground,
-      }}
       value={value}
       onChangeText={onChangeText}
       autoFocus={autoFocus}
+      style={{
+        paddingVertical: determinedPadding,
+        borderBottomWidth: 1,
+        borderRadius: 0,
+        borderColor: theme.colors.foreground,
+        color: theme.colors.foreground,
+      }}
     />
   );
 }

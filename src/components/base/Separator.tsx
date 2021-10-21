@@ -12,19 +12,15 @@ interface SeparatorProps {
 export default function Separator({size, vertical}: SeparatorProps) {
   const {theme} = useThemeContext();
 
-  let spacing: any;
-  if (size) {
-    spacing = theme.spacing[size];
-  } else {
-    spacing = theme.spacing.s;
-  }
+  // Determine spacing
+  const determinedSpacing = size ? theme.spacing[size] : theme.spacing.s;
 
-  let style: any;
-  if (vertical) {
-    style = {marginHorizontal: spacing};
-  } else {
-    style = {marginVertical: spacing};
-  }
-
-  return <View style={style} />;
+  return (
+    <View
+      style={{
+        marginHorizontal: vertical ? determinedSpacing : 0,
+        marginVertical: vertical ? 0 : determinedSpacing,
+      }}
+    />
+  );
 }

@@ -1,19 +1,16 @@
 import React, {useState} from 'react';
 
 import {useAppContext} from '../App.provider';
-import {useThemeContext} from '../Theme.provider';
 import ModalLayout from '../components/ModalLayout';
 import Text from '../components/base/Text';
 import TextInput from '../components/base/TextInput';
 import Button from '../components/base/Button';
 import Row from '../components/base/Row';
 import Separator from '../components/base/Separator';
-import {AddTaskIcon, DeleteIcon, SaveIcon} from '../components/Icons';
 import {EditTaskProps} from '../types';
 
 export default function EditTask({navigation, route}: EditTaskProps) {
   const appContext = useAppContext();
-  const {theme} = useThemeContext();
 
   const {taskId} = route.params;
   const task = appContext.tasks.find(task => task.id === taskId);
@@ -51,7 +48,7 @@ export default function EditTask({navigation, route}: EditTaskProps) {
 
   return (
     <ModalLayout closeModal={closeModal}>
-      <Text>Name</Text>
+      <Text>Task name</Text>
       <TextInput
         value={value}
         onChangeText={handleTextChange}
@@ -61,27 +58,19 @@ export default function EditTask({navigation, route}: EditTaskProps) {
       <Separator />
 
       <Row justifyContent="flex-end">
-        <Button
-          label="Delete"
-          icon={<DeleteIcon color={theme.colors.background} size={16} />}
-          onPress={() => handleDelete()}
-        />
+        <Button label="Delete" icon="Delete" onPress={() => handleDelete()} />
 
         <Separator size="xxs" vertical={true} />
 
         <Button
           label={`Mark ${task?.complete ? 'incomplete' : 'complete'}`}
-          icon={<AddTaskIcon color={theme.colors.background} size={16} />}
+          icon="AddTask"
           onPress={() => handleEditComplete()}
         />
 
         <Separator size="xxs" vertical={true} />
 
-        <Button
-          label="Save"
-          icon={<SaveIcon color={theme.colors.background} size={16} />}
-          onPress={() => handleEditName()}
-        />
+        <Button label="Save" icon="Save" onPress={() => handleEditName()} />
       </Row>
     </ModalLayout>
   );

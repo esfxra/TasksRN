@@ -1,10 +1,9 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Pressable} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
 import {useThemeContext} from '../Theme.provider';
-import Button from './base/Button';
-import {AddTaskIcon} from './Icons';
+import Icon from './base/Icon';
 
 export default function ActionButton() {
   const navigation = useNavigation();
@@ -15,17 +14,17 @@ export default function ActionButton() {
   }
 
   return (
-    <View
+    <Pressable
+      onPress={navigateToAddTask}
       style={{
         position: 'absolute',
         bottom: theme.spacing.m * 3,
         right: theme.spacing.m,
+        padding: theme.spacing.m,
+        borderRadius: 999,
+        backgroundColor: theme.colors.foreground,
       }}>
-      <Button
-        label="Add task"
-        icon={<AddTaskIcon color={theme.colors.background} size={16} />}
-        onPress={navigateToAddTask}
-      />
-    </View>
+      <Icon name="Add" size="xl" color="background" />
+    </Pressable>
   );
 }

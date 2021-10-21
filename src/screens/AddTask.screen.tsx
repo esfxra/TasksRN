@@ -7,7 +7,6 @@ import TextInput from '../components/base/TextInput';
 import Button from '../components/base/Button';
 import Row from '../components/base/Row';
 import Separator from '../components/base/Separator';
-import {AddTaskIcon} from '../components/Icons';
 import {AddTaskProps} from '../types';
 
 export default function AddTask({navigation}: AddTaskProps) {
@@ -33,7 +32,8 @@ export default function AddTask({navigation}: AddTaskProps) {
 
   return (
     <ModalLayout closeModal={closeModal}>
-      <Text>Name</Text>
+      <Text>Task name</Text>
+
       <TextInput
         value={value}
         onChangeText={handleTextChange}
@@ -43,11 +43,7 @@ export default function AddTask({navigation}: AddTaskProps) {
       <Separator />
 
       <Row justifyContent="flex-end">
-        <Button
-          label="Add task"
-          icon={<AddTaskIcon color="white" size={16} />}
-          onPress={handleAdd}
-        />
+        <Button onPress={handleAdd} label="Add task" icon="AddTask" />
       </Row>
     </ModalLayout>
   );

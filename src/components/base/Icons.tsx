@@ -2,16 +2,25 @@ import React from 'react';
 import {Svg, Rect, Path} from 'react-native-svg';
 
 interface IconProps {
-  color?: string;
-  size?: number;
+  color: string;
+  size: number;
+}
+
+export function AddIcon({color, size}: IconProps) {
+  return (
+    <Svg width={size} height={size} fill={color} viewBox="0 0 24 24">
+      <Path d="M0 0h24v24H0V0z" fill="none" />
+      <Path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+    </Svg>
+  );
 }
 
 export function AddTaskIcon({color, size}: IconProps) {
   return (
     <Svg
-      fill={color}
       width={size}
       height={size}
+      fill={color}
       enable-background="new 0 0 24 24"
       viewBox="0 0 24 24">
       <Rect fill="none" height="24" width="24" />
@@ -23,9 +32,9 @@ export function AddTaskIcon({color, size}: IconProps) {
 export function LightModeIcon({color, size}: IconProps) {
   return (
     <Svg
-      fill={color}
       width={size}
       height={size}
+      fill={color}
       enable-background="new 0 0 24 24"
       viewBox="0 0 24 24">
       <Rect fill="none" height="24" width="24" />
@@ -37,9 +46,9 @@ export function LightModeIcon({color, size}: IconProps) {
 export function DarkModeIcon({color, size}: IconProps) {
   return (
     <Svg
-      fill={color}
       width={size}
       height={size}
+      fill={color}
       enable-background="new 0 0 24 24"
       viewBox="0 0 24 24">
       <Rect fill="none" height="24" width="24" />
@@ -50,7 +59,7 @@ export function DarkModeIcon({color, size}: IconProps) {
 
 export function DeleteIcon({color, size}: IconProps) {
   return (
-    <Svg fill={color} width={size} height={size} viewBox="0 0 24 24">
+    <Svg width={size} height={size} fill={color} viewBox="0 0 24 24">
       <Path d="M0 0h24v24H0V0z" fill="none" />
       <Path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z" />
     </Svg>
@@ -59,9 +68,18 @@ export function DeleteIcon({color, size}: IconProps) {
 
 export function SaveIcon({color, size}: IconProps) {
   return (
-    <Svg fill={color} width={size} height={size} viewBox="0 0 24 24">
+    <Svg width={size} height={size} fill={color} viewBox="0 0 24 24">
       <Path d="M0 0h24v24H0V0z" fill="none" />
       <Path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6z" />
+    </Svg>
+  );
+}
+
+export function CloseIcon({color, size}: IconProps) {
+  return (
+    <Svg width={size} height={size} fill={color} viewBox="0 0 24 24">
+      <Path d="M0 0h24v24H0V0z" fill="none" />
+      <Path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
     </Svg>
   );
 }

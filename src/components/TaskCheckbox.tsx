@@ -13,7 +13,10 @@ export default function TaskCheckbox({complete, onPress}: TaskCheckboxProps) {
 
   return (
     <Pressable
-      style={{flexShrink: 0, paddingRight: theme.spacing.xs}}
+      style={{
+        flexShrink: 0,
+        paddingRight: theme.spacing.xs,
+      }}
       onPress={onPress}
       hitSlop={10}>
       <View

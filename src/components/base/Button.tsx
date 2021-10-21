@@ -1,23 +1,29 @@
 import React from 'react';
-import {Pressable, Text} from 'react-native';
+import {Pressable} from 'react-native';
 
 import {useThemeContext} from '../../Theme.provider';
 import Row from './Row';
-import {theme as themeTemplate} from '../../theme';
+import Icon, {IconNames} from './Icon';
+import Text from './Text';
 import Separator from './Separator';
+import {theme as themeTemplate} from '../../theme';
 
 interface ButtonProps {
-  label: string;
   onPress: () => void;
-  icon?: React.ReactNode;
+  hitSlop?: number;
+  label?: string;
+  icon?: IconNames;
+  borderRadius?: number;
   padding?: keyof typeof themeTemplate.spacing;
   margin?: keyof typeof themeTemplate.spacing;
 }
 
 export default function Button({
-  label,
   onPress,
+  hitSlop,
+  label,
   icon,
+  borderRadius,
   padding,
   margin,
 }: ButtonProps) {
@@ -25,23 +31,22 @@ export default function Button({
 
   return (
     <Pressable
+      onPress={onPress}
+      hitSlop={hitSlop}
       style={{
-        borderRadius: theme.spacing.xs,
-        padding: theme.spacing[padding || 's'],
-        margin: margin && theme.spacing[margin],
+        borderRadius: borderRadius ? borderRadius : theme.spacing.xs,
+        padding: padding ? theme.spacing[padding] : theme.spacing.s,
+        margin: margin ? theme.spacing[margin] : 0,
         backgroundColor: theme.colors.foreground,
-      }}
-      onPress={onPress}>
+      }}>
       <Row>
-        {icon}
-        {icon && <Separator size="xxs" vertical={true} />}
-        <Text
-          style={{
-            fontSize: theme.text.body.fontSize,
-            color: theme.colors.background,
-          }}>
-          {label}
-        </Text>
+        {icon && <Icon name={icon} size="m" color="background" />}
+        {icon && label && <Separator size="xxs" vertical={true} />}
+        {label && (
+          <Text type="body" color="background">
+            {label}
+          </Text>
+        )}
       </Row>
     </Pressable>
   );

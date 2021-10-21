@@ -6,8 +6,8 @@ import {useThemeContext} from './Theme.provider';
 import Home from './screens/Home.screen';
 import AddTask from './screens/AddTask.screen';
 import EditTask from './screens/EditTask.screen';
-import HeaderLeft from './components/HeaderLeft';
-import HeaderRight from './components/HeaderRight';
+import Text from './components/base/Text';
+import ThemeToggle from './components/ThemeToggle';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,8 +23,8 @@ export default function AppNavigator() {
           name="Home"
           options={{
             headerTitle: '',
-            headerLeft: () => <HeaderLeft />,
-            headerRight: () => <HeaderRight />,
+            headerLeft: () => <Text type="heading">Tasks</Text>,
+            headerRight: () => <ThemeToggle />,
             headerStyle: {backgroundColor: theme.colors.background},
           }}
         />

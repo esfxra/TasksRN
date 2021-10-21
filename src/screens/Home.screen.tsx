@@ -19,8 +19,6 @@ export default function Home({}: HomeProps) {
         padding: theme.spacing.m,
         backgroundColor: theme.colors.background,
       }}>
-      {/* <Text type="heading">Tasks</Text> */}
-      {/* <Separator size="xs" /> */}
       <ScrollView>
         {appContext.tasks.length === 0 ? (
           <Text>No tasks have been added (yet).</Text>

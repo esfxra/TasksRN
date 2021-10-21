@@ -2,13 +2,14 @@ import React from 'react';
 import {Pressable, View} from 'react-native';
 
 import {useThemeContext} from '../Theme.provider';
-import {LightModeIcon, DarkModeIcon} from './Icons';
+import Icon from './base/Icon';
 
 export default function ThemeToggle() {
   const {theme, themeName, toggleTheme} = useThemeContext();
 
-  // A small adjustment to the theme 'l' dimension
-  const adjustedDimension = theme.spacing.l - 2;
+  // Determine whether a space should be applied to the left or right
+  const determinedMarginLeft = themeName === 'dark' ? theme.spacing.xxs : 0;
+  const determinedMarginRight = themeName === 'light' ? theme.spacing.xxs : 0;
 
   return (
     <Pressable onPress={toggleTheme}>
@@ -21,26 +22,20 @@ export default function ThemeToggle() {
           backgroundColor: theme.colors.foreground,
         }}>
         {themeName === 'dark' && (
-          <DarkModeIcon
-            color={theme.colors.background}
-            size={adjustedDimension}
-          />
+          <Icon name="DarkMode" size="l" color="background" />
         )}
         <View
           style={{
-            width: adjustedDimension,
-            height: adjustedDimension,
-            marginLeft: themeName === 'dark' ? theme.spacing.xxs : 0,
-            marginRight: themeName === 'light' ? theme.spacing.xxs : 0,
             borderRadius: 999,
+            width: theme.spacing.l,
+            height: theme.spacing.l,
+            marginLeft: determinedMarginLeft,
+            marginRight: determinedMarginRight,
             backgroundColor: theme.colors.background,
           }}
         />
         {themeName === 'light' && (
-          <LightModeIcon
-            color={theme.colors.background}
-            size={adjustedDimension}
-          />
+          <Icon name="LightMode" size="l" color="background" />
         )}
       </View>
     </Pressable>
